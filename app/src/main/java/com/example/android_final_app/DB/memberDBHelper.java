@@ -15,7 +15,7 @@ public class memberDBHelper extends SQLiteOpenHelper {
     private Context context;
 
     // 데이터베이스 버전 및 이름
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "MOBILE_FINAL_PROJECT.db";
 
     // 테이블 생성 SQL 문
@@ -62,7 +62,7 @@ public class memberDBHelper extends SQLiteOpenHelper {
         values.put(memberDB.COL_EMAIL, "admin@admin.com"); // 관리자 이메일
         values.put(memberDB.COL_ID, "admin"); // 관리자 ID
         values.put(memberDB.COL_PASSWORD, "admin"); // 관리자 비밀번호
-        values.put(memberDB.COL_IS_MANAGER, 1); // 관리자 권한
+        values.put(memberDB.COL_IS_MANAGER, 1); // 관리자 권한 (정수형으로 삽입)
 
         // 데이터베이스에 관리자 계정 삽입
         long newRowId = db.insert(memberDB.TABLE_MEMBER, null, values);
@@ -129,5 +129,34 @@ public class memberDBHelper extends SQLiteOpenHelper {
                 null                     // ORDER BY 절
         );
         return cursor;
+    }
+
+    // ID 중복 여부 확인 메서드
+    public boolean isUserIdExists(String userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {memberDB.COL_ID};
+        String selection = memberDB.COL_ID + " = ?";
+        String[] selectionArgs = { userId };
+
+        Log.d(TAG, "Query: SELECT " + memberDB.COL_ID + " FROM " + memberDB.TABLE_MEMBER + " WHERE " + memberDB.COL_ID + " = '" + userId + "'");
+
+        Cursor cursor = db.query(memberDB.TABLE_MEMBER, columns, selection, selectionArgs, null, null, null);
+        boolean exists = (cursor.getCount() > 0);
+
+        Log.d(TAG, "Cursor count: " + cursor.getCount());
+
+        cursor.close();
+        return exists;
+    }
+
+    // 데이터베이스가 이미 존재하는 경우 기본 관리자 계정을 삽입하는 메서드
+    public void insertAdminIfNotExists() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT " + memberDB.COL_ID + " FROM " + memberDB.TABLE_MEMBER + " WHERE " + memberDB.COL_ID + " = 'admin'";
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.getCount() == 0) {
+            insertDefaultAdmin(db);
+        }
+        cursor.close();
     }
 }
