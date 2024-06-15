@@ -18,7 +18,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
@@ -80,7 +82,13 @@ public class FrequencyFragment extends Fragment implements OnMapReadyCallback {
         // 인하공업전문대학 위치로 초기 카메라 설정
         LatLng inhaGateLatLng = new LatLng(DEFAULT_LATITUDE, DEFAULT_LONGITUDE);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(inhaGateLatLng, 17));
-        mMap.addMarker(new MarkerOptions().position(inhaGateLatLng).title("인하공업전문대학"));
+        Marker marker = mMap.addMarker(new MarkerOptions().position(inhaGateLatLng).title("인하공업전문대학")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+
+        // 마커의 정보 창을 항상 표시
+        if (marker != null) {
+            marker.showInfoWindow();
+        }
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
