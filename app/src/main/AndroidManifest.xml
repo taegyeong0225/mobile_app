@@ -2,9 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <meta-data android:name="android.max_aspect" android:value="2.1" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <meta-data
+        android:name="android.max_aspect"
+        android:value="2.1" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -16,9 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_final_app"
         tools:targetApi="31">
+        <activity
+            android:name=".WritePostActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAD4qLzJqDfR2pc6R31O9UMQmFDXTxn46o"/>
+            android:value="AIzaSyAD4qLzJqDfR2pc6R31O9UMQmFDXTxn46o" />
+
         <activity
             android:name=".JoinActivity"
             android:exported="false" />
@@ -36,7 +44,5 @@
             </intent-filter>
         </activity>
     </application>
-
-
 
 </manifest>
