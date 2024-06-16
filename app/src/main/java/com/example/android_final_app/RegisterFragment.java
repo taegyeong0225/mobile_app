@@ -1,5 +1,6 @@
 package com.example.android_final_app;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,7 @@ public class RegisterFragment extends Fragment {
 
     private Spinner spinnerFilter; // 스피너 필터
     private postDBHelper dbHelper; // 데이터베이스 헬퍼
+    private Button btnWritePost; // 글 작성 버튼
 
     @Nullable
     @Override
@@ -47,6 +50,9 @@ public class RegisterFragment extends Fragment {
 
         // 스피너 초기화
         spinnerFilter = view.findViewById(R.id.spinnerFilter);
+
+        // 글 작성 버튼 초기화
+        btnWritePost = view.findViewById(R.id.btnWritePost);
 
         // 데이터베이스 헬퍼 초기화
         dbHelper = new postDBHelper(getContext());
@@ -73,6 +79,15 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // 아무것도 선택되지 않았을 때
+            }
+        });
+
+        // 글 작성 버튼 클릭 리스너 설정
+        btnWritePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), WritePostActivity.class);
+                startActivity(intent);
             }
         });
 

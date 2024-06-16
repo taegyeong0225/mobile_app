@@ -1,12 +1,8 @@
 package com.example.android_final_app;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -26,23 +22,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Edge-to-edge 설정
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.btnWritePost), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main_container), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         setBottomNavigationView();
-
-        // 글 작성 버튼
-        Button btnWritePost = findViewById(R.id.btnWritePost);
-        btnWritePost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WritePostActivity.class);
-                startActivity(intent);
-            }
-        });
 
         // 앱 초기 실행 시 홈화면으로 설정
         if (savedInstanceState == null) {
@@ -57,23 +43,19 @@ public class MainActivity extends AppCompatActivity {
 
             if (itemId == R.id.fragment_home) {
                 selectedFragment = new HomeFragment();
-                binding.btnWritePost.setVisibility(View.VISIBLE); // 글 작성 버튼 보이기
-            } else {
-                binding.btnWritePost.setVisibility(View.GONE); // 글 작성 버튼 숨기기
-                if (itemId == R.id.fragment_register) {
-                    selectedFragment = new RegisterFragment();
-                } else if (itemId == R.id.fragment_frequency) {
-                    selectedFragment = new FrequencyFragment();
-                } else if (itemId == R.id.fragment_settings) {
-                    SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                    boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
-                    Log.d(TAG, "isLoggedIn: " + isLoggedIn);
+            } else if (itemId == R.id.fragment_register) {
+                selectedFragment = new RegisterFragment();
+            } else if (itemId == R.id.fragment_frequency) {
+                selectedFragment = new FrequencyFragment();
+            } else if (itemId == R.id.fragment_settings) {
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
+                Log.d(TAG, "isLoggedIn: " + isLoggedIn);
 
-                    if (isLoggedIn) {
-                        selectedFragment = new MembershipFragment();
-                    } else {
-                        selectedFragment = new SettingsFragment();
-                    }
+                if (isLoggedIn) {
+                    selectedFragment = new MembershipFragment();
+                } else {
+                    selectedFragment = new SettingsFragment();
                 }
             }
 
