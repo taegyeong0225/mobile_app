@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/tvWriteReview"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_width="330dp"
+        android:layout_height="49dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="38dp"
@@ -28,90 +28,92 @@
 
     <EditText
         android:id="@+id/etTitle"
-        android:layout_width="0dp"
-        android:layout_height="46dp"
+        android:layout_width="327dp"
+        android:layout_height="55dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="98dp"
         android:layout_marginEnd="36dp"
+        android:layout_marginBottom="17dp"
         android:background="@drawable/rounded_edittext"
         android:hint="title"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerRestaurant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvWriteReview" />
 
     <Spinner
         android:id="@+id/spinnerRestaurant"
-        android:layout_width="0dp"
-        android:layout_height="44dp"
+        android:layout_width="335dp"
+        android:layout_height="54dp"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="17dp"
         android:layout_marginEnd="38dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_edittext"
         android:popupBackground="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/radioRecommended"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTitle" />
 
-    <RadioButton
-        android:id="@+id/radioRecommended"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:layout_marginBottom="13dp"
-        android:text="추천"
-        app:layout_constraintBottom_toTopOf="@+id/etContent"
-        app:layout_constraintStart_toStartOf="@+id/etContent" />
-
-    <RadioButton
-        android:id="@+id/radioNotRecommended"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="85dp"
-        android:layout_marginBottom="13dp"
-        android:text="비추천"
-        app:layout_constraintBottom_toTopOf="@+id/etContent"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerRestaurant" />
-
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="45dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/etContent"
+        app:layout_constraintEnd_toEndOf="@+id/etContent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/spinnerRestaurant">
+
+        <RadioButton
+            android:id="@+id/radioRecommended"
+            android:layout_width="126dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="49dp"
+            android:layout_marginBottom="13dp"
+            android:text="추천"
+            app:layout_constraintBottom_toTopOf="@+id/etContent"
+            app:layout_constraintStart_toStartOf="@+id/etContent" />
+
+        <RadioButton
+            android:id="@+id/radioNotRecommended"
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="85dp"
+            android:layout_marginBottom="13dp"
+            android:text="비추천"
+            app:layout_constraintBottom_toTopOf="@+id/etContent"
+            app:layout_constraintEnd_toEndOf="@+id/spinnerRestaurant" />
 
     </RadioGroup>
 
     <EditText
         android:id="@+id/etContent"
-        android:layout_width="0dp"
-        android:layout_height="345dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="122dp"
+        android:layout_width="340dp"
+        android:layout_height="322dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="21dp"
         android:background="@drawable/rounded_edittext"
-        android:hint="content"
         android:gravity="start|top"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="content"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginBottom="41dp"
         android:background="@drawable/round_button"
         android:text="작성완료"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/etContent"
         app:layout_constraintTop_toBottomOf="@+id/etContent" />
 
