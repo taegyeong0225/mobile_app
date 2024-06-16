@@ -1,8 +1,12 @@
 package com.example.android_final_app;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -29,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setBottomNavigationView();
+
+        // 글 작성 버튼
+        Button btnWritePost = findViewById(R.id.btnWritePost);
+        btnWritePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WritePostActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // 앱 초기 실행 시 홈화면으로 설정
         if (savedInstanceState == null) {

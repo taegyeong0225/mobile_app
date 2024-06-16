@@ -8,4 +8,5 @@ public class postDB {
     public static final String COL_CONTENT = "content";
     public static final String COL_AUTHOR = "author";
     public static final String COL_RESTAURANT = "restaurant";
+    public static final String COL_RECOMMEND = "recommend";
 }

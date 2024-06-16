@@ -22,7 +22,8 @@ public class postDBHelper extends SQLiteOpenHelper {
                 postDB.COL_TITLE + " TEXT, " +
                 postDB.COL_CONTENT + " TEXT, " +
                 postDB.COL_AUTHOR + " TEXT, " +
-                postDB.COL_RESTAURANT + " TEXT)";
+                postDB.COL_RESTAURANT + " TEXT, " +
+                postDB.COL_RECOMMEND + " BOOLEAN DEFAULT 0)"; // 추천 필드 추가
         db.execSQL(CREATE_POSTS_TABLE);
     }
 
@@ -33,13 +34,14 @@ public class postDBHelper extends SQLiteOpenHelper {
     }
 
     // 데이터 삽입 메서드
-    public long addPost(String title, String content, String author, String restaurant) {
+    public long addPost(String title, String content, String author, String restaurant, boolean recommend) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(postDB.COL_TITLE, title);
         values.put(postDB.COL_CONTENT, content);
         values.put(postDB.COL_AUTHOR, author);
         values.put(postDB.COL_RESTAURANT, restaurant);
+        values.put(postDB.COL_RECOMMEND, recommend);
         return db.insert(postDB.TABLE_POST, null, values);
     }
 
@@ -51,7 +53,8 @@ public class postDBHelper extends SQLiteOpenHelper {
                 postDB.COL_TITLE,
                 postDB.COL_CONTENT,
                 postDB.COL_AUTHOR,
-                postDB.COL_RESTAURANT
+                postDB.COL_RESTAURANT,
+                postDB.COL_RECOMMEND
         };
         return db.query(postDB.TABLE_POST, projection, null, null, null, null, null);
     }
