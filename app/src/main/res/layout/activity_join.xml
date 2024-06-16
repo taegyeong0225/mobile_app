@@ -44,12 +44,133 @@
         app:layout_constraintTop_toBottomOf="@+id/editPW">
 
         <TextView
+            android:id="@+id/txtInputId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginEnd="93dp"
+            android:text="ID"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/editID"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtInputEmail" />
+
+        <EditText
+            android:id="@+id/editPW"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/editCheckPW"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtInputPW"
+            app:layout_constraintTop_toBottomOf="@+id/btnCheckId" />
+
+        <TextView
+            android:id="@+id/txtInputPW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="19dp"
+            android:text="PASSWORD"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editPW"
+            app:layout_constraintEnd_toStartOf="@+id/editPW"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/editCheckPW"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="211dp"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtInputCheckPW"
+            app:layout_constraintTop_toBottomOf="@+id/editPW" />
+
+        <Button
+            android:id="@+id/btnJoin"
+            android:layout_width="131dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/round_button"
+            android:text="SIGN UP"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editCheckPW" />
+
+        <TextView
+            android:id="@+id/txtInputCheckPW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="46dp"
+            android:layout_marginEnd="20dp"
+            android:text="REWRITE \nPASSWORD"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/editCheckPW"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editCheckPW" />
+
+        <Button
+            android:id="@+id/btnCheckId"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="35dp"
+            android:text="중복\n확인"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/editPW"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editID"
+            app:layout_constraintTop_toBottomOf="@+id/editEmail" />
+
+        <EditText
+            android:id="@+id/editID"
+            android:layout_width="149dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="@+id/btnCheckId"
+            app:layout_constraintEnd_toStartOf="@+id/btnCheckId"
+            app:layout_constraintStart_toEndOf="@+id/txtInputId"
+            app:layout_constraintTop_toTopOf="@+id/btnCheckId"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:ems="10"
+            android:hint="홍길동"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/editEmail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtInputName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/txtInputName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="47dp"
-            android:layout_marginEnd="22dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="62dp"
             android:text="NAME"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/editName"
@@ -60,134 +181,29 @@
             android:id="@+id/txtInputEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="33dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="60dp"
             android:text="EMAIL"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/editEmail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtInputName" />
 
-        <TextView
-            android:id="@+id/txtInputId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:text="ID"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/txtInputEmail"
-            app:layout_constraintTop_toBottomOf="@+id/txtInputEmail" />
-
-        <EditText
-            android:id="@+id/editID"
-            android:layout_width="150dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="10dp"
-            android:ems="10"
-            android:inputType="text"
-            app:layout_constraintStart_toStartOf="@+id/editEmail"
-            app:layout_constraintTop_toBottomOf="@+id/editEmail" />
-
-        <EditText
-            android:id="@+id/editPW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            app:layout_constraintStart_toStartOf="@+id/txtCheckID"
-            app:layout_constraintTop_toBottomOf="@+id/txtCheckID" />
-
-        <TextView
-            android:id="@+id/txtInputPW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="19dp"
-            android:text="PASSWORD"
-            android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/editPW"
-            app:layout_constraintEnd_toStartOf="@+id/editPW" />
-
-        <EditText
-            android:id="@+id/editCheckPW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            app:layout_constraintStart_toStartOf="@+id/editPW"
-            app:layout_constraintTop_toBottomOf="@+id/editPW" />
-
-        <TextView
-            android:id="@+id/txtInputCheckPW"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="REWRITE \nPASSWORD"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/txtInputPW"
-            app:layout_constraintTop_toTopOf="@+id/editCheckPW" />
-
-        <EditText
-            android:id="@+id/editName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="홍길동"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txtInputName"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/editEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="17dp"
+            android:background="@drawable/rounded_edittext"
             android:ems="10"
             android:hint="ex@explane.com"
             android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/btnCheckId"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/txtInputEmail"
             app:layout_constraintTop_toBottomOf="@+id/editName" />
-
-        <Button
-            android:id="@+id/btnJoin"
-            android:layout_width="131dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="29dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/round_button"
-            android:text="SIGN UP"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editCheckPW" />
-
-        <TextView
-            android:id="@+id/txtCheckID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:textColor="#9E9E9E"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/editID"
-            app:layout_constraintStart_toStartOf="@+id/editID"
-            app:layout_constraintTop_toBottomOf="@+id/editID" />
-
-        <Button
-            android:id="@+id/btnCheckId"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginBottom="59dp"
-            android:text="중복\n확인"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@+id/editPW"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editID"
-            app:layout_constraintTop_toBottomOf="@+id/editEmail" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
