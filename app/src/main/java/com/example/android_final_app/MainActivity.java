@@ -57,19 +57,23 @@ public class MainActivity extends AppCompatActivity {
 
             if (itemId == R.id.fragment_home) {
                 selectedFragment = new HomeFragment();
-            } else if (itemId == R.id.fragment_register) {
-                selectedFragment = new RegisterFragment();
-            } else if (itemId == R.id.fragment_frequency) {
-                selectedFragment = new FrequencyFragment();
-            } else if (itemId == R.id.fragment_settings) {
-                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
-                Log.d(TAG, "isLoggedIn: " + isLoggedIn);
+                binding.btnWritePost.setVisibility(View.VISIBLE); // 글 작성 버튼 보이기
+            } else {
+                binding.btnWritePost.setVisibility(View.GONE); // 글 작성 버튼 숨기기
+                if (itemId == R.id.fragment_register) {
+                    selectedFragment = new RegisterFragment();
+                } else if (itemId == R.id.fragment_frequency) {
+                    selectedFragment = new FrequencyFragment();
+                } else if (itemId == R.id.fragment_settings) {
+                    SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                    boolean isLoggedIn = preferences.getBoolean("isLoggedIn", false);
+                    Log.d(TAG, "isLoggedIn: " + isLoggedIn);
 
-                if (isLoggedIn) {
-                    selectedFragment = new MembershipFragment();
-                } else {
-                    selectedFragment = new SettingsFragment();
+                    if (isLoggedIn) {
+                        selectedFragment = new MembershipFragment();
+                    } else {
+                        selectedFragment = new SettingsFragment();
+                    }
                 }
             }
 
