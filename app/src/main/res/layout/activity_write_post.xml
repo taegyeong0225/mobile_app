@@ -5,6 +5,114 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EDF1F6"
     tools:context=".WritePostActivity">
+
+    <TextView
+        android:id="@+id/tvWriteReview"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="21dp"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center"
+        android:text="REVIEW"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/etTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="98dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerRestaurant"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/rounded_edittext"
+        android:popupBackground="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/radioRecommended"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+
+    <RadioButton
+        android:id="@+id/radioRecommended"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginBottom="13dp"
+        android:text="추천"
+        app:layout_constraintBottom_toTopOf="@+id/etContent"
+        app:layout_constraintStart_toStartOf="@+id/etContent" />
+
+    <RadioButton
+        android:id="@+id/radioNotRecommended"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="13dp"
+        android:text="비추천"
+        app:layout_constraintBottom_toTopOf="@+id/etContent"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerRestaurant" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/etContent"
+        android:layout_width="0dp"
+        android:layout_height="345dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="122dp"
+        android:background="@drawable/rounded_edittext"
+        android:hint="content"
+        android:gravity="start|top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/round_button"
+        android:text="작성완료"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/etContent"
+        app:layout_constraintTop_toBottomOf="@+id/etContent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
