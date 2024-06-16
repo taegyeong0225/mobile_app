@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/rounded_edittext"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -16,22 +17,28 @@
         android:id="@+id/tvPostAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#555555" />
+        android:textColor="#555555"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvPostRestaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restaurant" />
 
     <TextView
         android:id="@+id/tvPostRecommend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#555555" />
+        android:textColor="#555555"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvPostContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:paddingTop="8dp"
         android:textColor="#333333"
-        android:paddingTop="8dp" />
+        android:textSize="14sp" />
 
 </LinearLayout>

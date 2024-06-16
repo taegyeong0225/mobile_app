@@ -33,6 +33,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.tvPostAuthor.setText("작성자: " + post.getAuthor());
         holder.tvPostRecommend.setText(post.isRecommend() ? "추천" : "비추천");
         holder.tvPostContent.setText(post.getContent());
+        holder.tvPostRestaurant.setText("식당: " + post.getRestaurant()); // 식당 이름 추가
     }
 
     @Override
@@ -47,7 +48,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     public static class PostViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvPostTitle, tvPostAuthor, tvPostRecommend, tvPostContent;
+        public TextView tvPostTitle, tvPostAuthor, tvPostRecommend, tvPostContent, tvPostRestaurant; // 식당 이름을 위한 텍스트 뷰 추가
 
         public PostViewHolder(View view) {
             super(view);
@@ -55,6 +56,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             tvPostAuthor = view.findViewById(R.id.tvPostAuthor);
             tvPostRecommend = view.findViewById(R.id.tvPostRecommend);
             tvPostContent = view.findViewById(R.id.tvPostContent);
+            tvPostRestaurant = view.findViewById(R.id.tvPostRestaurant); // 식당 이름을 위한 텍스트 뷰 추가
         }
     }
 }

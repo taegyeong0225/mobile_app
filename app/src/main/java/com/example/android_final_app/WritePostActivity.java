@@ -81,7 +81,7 @@ public class WritePostActivity extends AppCompatActivity {
             Log.d("WritePostActivity", "Post saved with ID: " + rowId);
             Toast.makeText(this, "게시글이 저장되었습니다!", Toast.LENGTH_SHORT).show();
             // 메인 화면으로 돌아가기
-            Intent mainIntent = new Intent(WritePostActivity.this, MainActivity.class);
+            Intent mainIntent = new Intent(WritePostActivity.this, RegisterFragment.class);
             startActivity(mainIntent);
             finish();
         } else {
