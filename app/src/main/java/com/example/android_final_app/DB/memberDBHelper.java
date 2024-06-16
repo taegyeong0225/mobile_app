@@ -15,7 +15,7 @@ public class memberDBHelper extends SQLiteOpenHelper {
     private Context context;
 
     // 데이터베이스 버전 및 이름
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3; // 버전을 3으로 변경
     public static final String DATABASE_NAME = "MOBILE_FINAL_PROJECT.db";
 
     // 테이블 생성 SQL 문

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class postDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "MOBILE_FINAL_PROJECT.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     public postDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -23,7 +23,7 @@ public class postDBHelper extends SQLiteOpenHelper {
                 postDB.COL_CONTENT + " TEXT, " +
                 postDB.COL_AUTHOR + " TEXT, " +
                 postDB.COL_RESTAURANT + " TEXT, " +
-                postDB.COL_RECOMMEND + " BOOLEAN DEFAULT 0)"; // 추천 필드 추가
+                postDB.COL_RECOMMEND + " BOOLEAN DEFAULT 0)";
         db.execSQL(CREATE_POSTS_TABLE);
     }
 
@@ -33,7 +33,11 @@ public class postDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // 데이터 삽입 메서드
+    public Cursor getAllPosts() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.query(postDB.TABLE_POST, null, null, null, null, null, null);
+    }
+
     public long addPost(String title, String content, String author, String restaurant, boolean recommend) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -43,19 +47,5 @@ public class postDBHelper extends SQLiteOpenHelper {
         values.put(postDB.COL_RESTAURANT, restaurant);
         values.put(postDB.COL_RECOMMEND, recommend);
         return db.insert(postDB.TABLE_POST, null, values);
-    }
-
-    // 데이터 읽기 메서드
-    public Cursor getAllPosts() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {
-                postDB.COL_NO,
-                postDB.COL_TITLE,
-                postDB.COL_CONTENT,
-                postDB.COL_AUTHOR,
-                postDB.COL_RESTAURANT,
-                postDB.COL_RECOMMEND
-        };
-        return db.query(postDB.TABLE_POST, projection, null, null, null, null, null);
     }
 }
