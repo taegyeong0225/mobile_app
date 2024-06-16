@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class postDBHelper extends SQLiteOpenHelper {
 
@@ -58,4 +59,46 @@ public class postDBHelper extends SQLiteOpenHelper {
         String[] selectionArgs = { category };
         return db.query(postDB.TABLE_POST, null, selection, selectionArgs, null, null, null);
     }
+
+    // 추천이 가장 많은 식당 가져오기
+    public String getTopRecommendedRestaurant() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + postDB.COL_RESTAURANT + ", COUNT(*) as count FROM " + postDB.TABLE_POST +
+                " WHERE " + postDB.COL_RECOMMEND + " = 1 GROUP BY " + postDB.COL_RESTAURANT +
+                " ORDER BY count DESC LIMIT 1";
+        Cursor cursor = db.rawQuery(query, null);
+
+        String topRestaurant = "추천이 가장 많은 식당 정보 없음";
+        if (cursor.moveToFirst()) {
+            int colIndex = cursor.getColumnIndex(postDB.COL_RESTAURANT);
+            if (colIndex != -1) {
+                topRestaurant = cursor.getString(colIndex);
+            } else {
+                Log.e("postDBHelper", "Column " + postDB.COL_RESTAURANT + " not found in cursor");
+            }
+        }
+        cursor.close();
+        return topRestaurant;
+    }
+
+    // 리뷰가 가장 많은 식당 가져오기
+    public String getMostReviewedRestaurant() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + postDB.COL_RESTAURANT + ", COUNT(*) as count FROM " + postDB.TABLE_POST +
+                " GROUP BY " + postDB.COL_RESTAURANT + " ORDER BY count DESC LIMIT 1";
+        Cursor cursor = db.rawQuery(query, null);
+
+        String mostReviewedRestaurant = "리뷰가 가장 많은 식당 정보 없음";
+        if (cursor.moveToFirst()) {
+            int colIndex = cursor.getColumnIndex(postDB.COL_RESTAURANT);
+            if (colIndex != -1) {
+                mostReviewedRestaurant = cursor.getString(colIndex);
+            } else {
+                Log.e("postDBHelper", "Column " + postDB.COL_RESTAURANT + " not found in cursor");
+            }
+        }
+        cursor.close();
+        return mostReviewedRestaurant;
+    }
+
 }
