@@ -1,11 +1,14 @@
 package com.example.android_final_app;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,6 +43,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -93,21 +97,17 @@ public class FrequencyFragment extends Fragment implements OnMapReadyCallback {
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
         // 인하공업전문대학 근처 맛집 표시
-        showNearbyPlaces(inhaGateLatLng);
+        fetchAndSaveNearbyPlaces(inhaGateLatLng);
     }
 
     // 주어진 위치 근처의 장소를 찾고 마커로 표시하는 메서드
-    private void showNearbyPlaces(LatLng location) {
-        // Places API에서 NearbySearchRequest를 사용하여 장소 검색
+    // 음식점 목록을 가져와서 저장하는 메서드
+    private void fetchAndSaveNearbyPlaces(LatLng location) {
         String locationString = location.latitude + "," + location.longitude;
-        int radius = 1000; // 1km 반경
+        int radius = 1000;
+        String apiKey = "AIzaSyB6_kA7AnPl0sM5kpJer5h8zLD3y0gqpe8";
+        String nearbySearchUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + locationString + "&radius=" + radius + "&type=restaurant&key=" + apiKey;
 
-        // 요청 URL 생성
-        String apiKey = "AIzaSyB6_kA7AnPl0sM5kpJer5h8zLD3y0gqpe8"; // 실제 API 키로 변경
-        String nearbySearchUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="
-                + locationString + "&radius=" + radius + "&type=restaurant&key=" + apiKey;
-
-        // HTTP 요청을 비동기로 실행
         new Thread(() -> {
             try {
                 URL url = new URL(nearbySearchUrl);
@@ -127,9 +127,7 @@ public class FrequencyFragment extends Fragment implements OnMapReadyCallback {
                 JSONObject jsonResponse = new JSONObject(response);
                 JSONArray results = jsonResponse.getJSONArray("results");
 
-                // API 응답 로깅
-                System.out.println("API Response: " + response);
-
+                List<String> restaurantList = new ArrayList<>();
                 requireActivity().runOnUiThread(() -> {
                     try {
                         for (int i = 0; i < results.length(); i++) {
@@ -142,7 +140,12 @@ public class FrequencyFragment extends Fragment implements OnMapReadyCallback {
 
                             LatLng placeLatLng = new LatLng(lat, lng);
                             mMap.addMarker(new MarkerOptions().position(placeLatLng).title(name));
+                            restaurantList.add(name);
                         }
+
+                        // 저장 메서드 호출
+                        saveRestaurantList(restaurantList);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -151,6 +154,19 @@ public class FrequencyFragment extends Fragment implements OnMapReadyCallback {
                 e.printStackTrace();
             }
         }).start();
+    }
+
+
+    // 음식점 저장 하기
+    private void saveRestaurantList(List<String> restaurantList) {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        JSONArray jsonArray = new JSONArray(restaurantList);
+        editor.putString("restaurantList", jsonArray.toString());
+        editor.apply();
+
+        // 데이터 저장 확인 로그
+        Log.i("FrequencyFragment", "Saved restaurant list: " + jsonArray.toString());
     }
 
 }

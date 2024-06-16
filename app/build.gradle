@@ -8,6 +8,10 @@ android {
         viewBinding true
     }
 
+    viewBinding {
+        enabled = true
+    }
+
     namespace 'com.example.android_final_app'
     compileSdk 34
 

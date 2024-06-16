@@ -6,6 +6,10 @@
         android:name="android.max_aspect"
         android:value="2.1" />
 
+    <meta-data
+        android:name="log.tag.FrequencyFragment"
+        android:value="INFO" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
