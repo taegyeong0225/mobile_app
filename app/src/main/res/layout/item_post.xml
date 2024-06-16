@@ -17,13 +17,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="#888888" />
+        android:textColor="#555555" />
 
     <TextView
         android:id="@+id/tvPostRecommend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="#888888" />
+        android:textColor="#555555" />
+
+    <TextView
+        android:id="@+id/tvPostContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        android:paddingTop="8dp" />
 
 </LinearLayout>

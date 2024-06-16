@@ -67,7 +67,7 @@ public class WritePostActivity extends AppCompatActivity {
 
     private void savePost() {
         SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        String author = sharedPreferences.getString("loggedInUserId", "defaultUser"); // 기본 값은 "defaultUser"로 설정
+        String author = sharedPreferences.getString("userName", "defaultUser"); // 로그인한 사용자 ID 가져오기
 
         String title = binding.etTitle.getText().toString();
         String content = binding.etContent.getText().toString();
